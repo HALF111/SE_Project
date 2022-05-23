@@ -16,10 +16,10 @@ public class Medicalrecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "patientid", updatable = false, insertable = false)
+    @JoinColumn(name = "patientid")
     private Patient patientid;
     @ManyToOne
-    @JoinColumn(name = "doctorid", updatable = false, insertable = false)
+    @JoinColumn(name = "doctorid")
     private Doctor doctorid;
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date registrationtime;
@@ -33,8 +33,8 @@ public class Medicalrecord {
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date paymenttime;
     @OneToMany
-    @JoinColumn(name = "recordId")
-    private List<ItemRecord> itemRecords;
+    @JoinColumn(name = "recordid")
+    private List<Itemrecord> itemrecords;
 
 
 }

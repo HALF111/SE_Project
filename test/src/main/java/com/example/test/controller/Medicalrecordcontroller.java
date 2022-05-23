@@ -1,7 +1,10 @@
 package com.example.test.controller;
 
+import com.example.test.entity.Itemrecord;
 import com.example.test.entity.Medicalrecord;
 import com.example.test.entity.Patient;
+import com.example.test.entity.Result;
+import com.example.test.repository.Itemrecordrepository;
 import com.example.test.repository.Medicalrecordrepository;
 import com.example.test.repository.Patientrepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,8 @@ public class Medicalrecordcontroller {
     private Medicalrecordrepository medicalrecordrepository;
     @Autowired
     private Patientrepository patientrepository;
+    @Autowired
+    private Itemrecordrepository itemrecordrepository;
 
     @PostMapping("/insertrecord")
     public String insertrecord(@RequestBody Medicalrecord medical_record) {
@@ -56,6 +61,27 @@ public class Medicalrecordcontroller {
         }
 
         return result;
+    }
+
+    public Result remove(int id) {
+        Medicalrecord m = medicalrecordrepository.findById(id).orElse(null);
+        int i = 0;
+        Result r = new Result();
+        if (m == null) {
+            r.setSuccess(0);
+            return r;
+        }
+        Itemrecord items[] = m.getItemrecords().toArray(new Itemrecord[0]);
+        for (Itemrecord is : items) {
+            i = itemrecordrepository.removeById(is.getId());
+            if (i == 0) {
+                r.setSuccess(i);
+                return r;
+            }
+        }
+        i = medicalrecordrepository.removeById(id);
+        r.setSuccess(i);
+        return r;
     }
 
 }

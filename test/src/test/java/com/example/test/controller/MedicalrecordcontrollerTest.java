@@ -18,7 +18,7 @@ class MedicalrecordcontrollerTest {
     void insertrecord() {
         Medicalrecord m = new Medicalrecord();
         Patient p = new Patient();
-        p.setId(1);
+        p.setId(3);
         p.setLoginname("1111");
         p.setPasswd("1111");
         m.setPatientid(p);

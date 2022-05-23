@@ -23,7 +23,6 @@ public class Patient {
     private Boolean isinhospital = false;
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date registertime;
-    @OneToMany
-    @JoinColumn(name = "patientid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "patientid")
     private List<Medicalrecord> medicalrecords;
 }

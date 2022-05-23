@@ -7,4 +7,6 @@ public interface Patientrepository extends JpaRepository<Patient, Integer> {
     public Patient findByLoginname(String loginName);//用账号查询数据库，返回一个user
 
     public Patient[] findByPasswd(String password);//用密码查询数据库，返回user数组
+
+    public int removeById(Integer id);
 }

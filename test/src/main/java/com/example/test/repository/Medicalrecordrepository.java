@@ -10,4 +10,6 @@ public interface Medicalrecordrepository extends JpaRepository<Medicalrecord, In
     public Medicalrecord findByPatientidAndRegistrationtime(Patient patientid, Date registrationtime);
 
     public Medicalrecord[] findByPatientid(Patient patientid);
+
+    public int removeById(int id);
 }
