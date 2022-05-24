@@ -20,7 +20,9 @@ class PatientcontrollerTest {
         p.setRealname("gg");
         p.setPasswd("1111");
         p.setId(1);
-        System.out.println(patientcontroller.save(p));
+        Result<Patient> patientResult = new Result<>();
+        patientResult.setResult(p);
+        System.out.println(patientcontroller.save(patientResult));
 
     }
 
@@ -33,7 +35,9 @@ class PatientcontrollerTest {
         p.setGender(0);
         p.setRealname("ji");
         p.setPasswd("1111");
-        System.out.println(patientcontroller.update(p));
+        Result<Patient> patientResult = new Result<>();
+        patientResult.setResult(p);
+        System.out.println(patientcontroller.update(patientResult));
     }
 
     @Test
@@ -41,7 +45,9 @@ class PatientcontrollerTest {
         Patient p = new Patient();
         p.setLoginname("1111");
         p.setPasswd("1111");
-        System.out.println(patientcontroller.login(p));
+        Result<Patient> patientResult = new Result<>();
+        patientResult.setResult(p);
+        System.out.println(patientcontroller.login(patientResult));
     }
 
     @Test

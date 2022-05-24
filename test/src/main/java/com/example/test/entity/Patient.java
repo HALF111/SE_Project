@@ -25,4 +25,9 @@ public class Patient {
     private Date registertime;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "patientid")
     private List<Medicalrecord> medicalrecords;
+    @OneToOne(mappedBy = "patientid")
+    private Sickroominfo sickroominfo;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "patientid")
+    private List<Hospitalizationrecord> hospitalizationrecords;
+
 }

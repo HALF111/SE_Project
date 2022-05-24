@@ -32,9 +32,12 @@ public class Medicalrecord {
     private Boolean ispaid = false;
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date paymenttime;
-    @OneToMany
-    @JoinColumn(name = "recordid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "recordid")
     private List<Itemrecord> itemrecords;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "recordid")
+    private List<Medicationrecord> medicationrecords;
+    @OneToOne(mappedBy = "recordid")
+    private Hospitalizationrecord hospitalizationrecord;
 
 
 }

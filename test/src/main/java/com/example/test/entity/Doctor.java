@@ -19,7 +19,6 @@ public class Doctor {
     private String department;
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date registertime;
-    @OneToMany
-    @JoinColumn(name = "doctorid")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctorid")
     private List<Medicalrecord> medicalrecords;
 }

@@ -13,7 +13,7 @@ public class Checkitemtable {
     private Integer id;
     private String checkitemname;
     private Integer itemprice;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "checkitemid")
     @JoinColumn(name = "checkitemid")
     private List<Itemrecord> itemrecords;
 }

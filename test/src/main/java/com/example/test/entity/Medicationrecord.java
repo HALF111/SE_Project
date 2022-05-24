@@ -4,9 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Data
 @Entity
-public class Itemrecord {
+@Data
+public class Medicationrecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -14,8 +14,8 @@ public class Itemrecord {
     @JoinColumn(name = "recordid")
     private Medicalrecord recordid;
     @ManyToOne
-    @JoinColumn(name = "checkitemid")
-    private Checkitemtable checkitemid;
-    private Integer itemprice;
-
+    @JoinColumn(name = "medicineid")
+    private Pharmacy medicineid;
+    private int medicineprice;
+    
 }

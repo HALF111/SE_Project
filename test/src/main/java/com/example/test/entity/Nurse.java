@@ -3,11 +3,9 @@ package com.example.test.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,4 +18,6 @@ public class Nurse {
     private String passwd;//密码，varchar（20）
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date registertime;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "nurseid")
+    private List<Sickroominfo> sickroominfos;
 }
