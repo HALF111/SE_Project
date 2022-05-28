@@ -5,7 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,5 +20,5 @@ public class Doctor {
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date registertime;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctorid")
-    private List<Medicalrecord> medicalrecords;
+    private Set<Medicalrecord> medicalrecords;
 }

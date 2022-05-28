@@ -1,11 +1,9 @@
 package com.example.test.controller;
 
-import com.example.test.entity.Medicalrecord;
 import com.example.test.entity.Patient;
 import com.example.test.entity.Result;
 import com.example.test.repository.Patientrepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -69,26 +67,13 @@ public class Patientcontroller {
         return result1;
     }//查询user数据库，看输入的user实例是否可以匹配一项，是则返回“success”，否则“error”
 
-    @Transactional
-    @PostMapping("/remove")
-    public Result remove(@RequestBody Integer id) {
-        Patient p = patientrepository.findById(id).orElse(null);
-        int i = 0;
-        Result result = new Result();
-        if (p == null) {
-            result.setSuccess(i);
-            return result;
-        }
-        Medicalrecord[] ms = p.getMedicalrecords().toArray(new Medicalrecord[0]);
-        for (Medicalrecord m : ms) {
-            result = medicalrecordcontroller.remove(m.getId());
-            if (result.getSuccess() == 0) {
-                return result;
-            }
-        }
-        i = patientrepository.removeById(id);
-        result.setSuccess(i);
-        return result;
+    public Patient findById(int id) {
+        Patient patient = patientrepository.findById(id).orElse(null);
+        return patient;
+    }
+
+    public Patient removeByid(int id) {
+        return patientrepository.removeById(id);
     }
 
     @GetMapping("searchid")

@@ -16,6 +16,7 @@ public class Medicationrecord {
     @ManyToOne
     @JoinColumn(name = "medicineid")
     private Pharmacy medicineid;
-    private int medicineprice;
-    
+    private Integer number;
+    private Float medicineprice;
+
 }

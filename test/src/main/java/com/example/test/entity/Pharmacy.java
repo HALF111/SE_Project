@@ -3,7 +3,7 @@ package com.example.test.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -12,9 +12,9 @@ public class Pharmacy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String medicinename;
-    private int medicineprice;
+    private Float medicineprice;
     private int inventory;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "medicineid")
-    private List<Medicationrecord> medicationrecords;
+    private Set<Medicationrecord> medicationrecords;
 
 }

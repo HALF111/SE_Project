@@ -5,7 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -18,6 +18,6 @@ public class Nurse {
     private String passwd;//密码，varchar（20）
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date registertime;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "nurseid")
-    private List<Sickroominfo> sickroominfos;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nurseid")
+    private Set<Sickroominfo> sickroominfos;
 }

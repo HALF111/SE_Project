@@ -6,7 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -23,11 +23,10 @@ public class Patient {
     private Boolean isinhospital = false;
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date registertime;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "patientid")
-    private List<Medicalrecord> medicalrecords;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "patientid")
+    private Set<Medicalrecord> medicalrecords;
     @OneToOne(mappedBy = "patientid")
     private Sickroominfo sickroominfo;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "patientid")
-    private List<Hospitalizationrecord> hospitalizationrecords;
+
 
 }

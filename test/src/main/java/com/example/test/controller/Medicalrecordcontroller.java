@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/record")
@@ -39,10 +40,10 @@ public class Medicalrecordcontroller {
     }
 
     @GetMapping("/searchrecord")
-    public Medicalrecord[] searchrecord(Integer i) {
+    public List<Medicalrecord> searchrecord(Integer i) {
         Patient p = patientrepository.findById(i).orElse(null);
-        Medicalrecord[] result = medicalrecordrepository.findByPatientid(p);
-        if (result.length == 0) {
+        List<Medicalrecord> result = medicalrecordrepository.findByPatientid(p);
+        if (result.size() == 0) {
             System.out.println("error,no record");
             Medicalrecord errormessage = new Medicalrecord();
             //errormessage.setPatientid(99999);
@@ -56,8 +57,8 @@ public class Medicalrecordcontroller {
                 System.out.println("dataerror");
             }
             errormessage.setRegistrationtime(date);
-            result = new Medicalrecord[1];
-            result[0] = errormessage;
+            result.add(errormessage);
+
         }
 
         return result;

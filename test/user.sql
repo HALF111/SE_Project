@@ -87,7 +87,7 @@ create table hospitalizationrecord(
 	`id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT "自增id",
     `recordid` int(10) unsigned NOT NULL COMMENT "对应的病历记录id",
     `patientid` int(10) unsigned NOT NULL COMMENT "病人id",
-    `sickrommid` int(10) unsigned NOT NULL COMMENT "对应的病房id",
+    `sickroommid` int(10) unsigned NOT NULL COMMENT "对应的病房id",
     `arrivaltime` datetime COMMENT "入院时间，注意入院后需要将patient的isInHospital置为true",
     `isinhospital` boolean COMMENT "不知道这里要不要再加一个表示病人是否正在住院的boolean变量",
     `departuretime` datetime DEFAULT NULL COMMENT "出院时间，注意出院后需要将patient的isInHospital置为false",

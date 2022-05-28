@@ -3,7 +3,7 @@ package com.example.test.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -11,7 +11,7 @@ public class Sickroominfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String roomnumber;
+    private Integer roomnumber;
     @ManyToOne
     @JoinColumn(name = "nurseid")
     private Nurse nurseid;
@@ -20,5 +20,5 @@ public class Sickroominfo {
     @JoinColumn(name = "patientid")
     private Patient patientid;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "sickroomid")
-    private List<Hospitalizationrecord> hospitalizationrecords;
+    private Set<Medicalrecord> medicalrecords;
 }

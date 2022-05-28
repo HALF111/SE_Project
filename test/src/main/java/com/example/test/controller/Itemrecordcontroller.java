@@ -10,4 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class Itemrecordcontroller {
     @Autowired
     Itemrecordrepository itemrecordrepository;
+
 }

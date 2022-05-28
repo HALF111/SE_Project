@@ -50,9 +50,5 @@ class PatientcontrollerTest {
         System.out.println(patientcontroller.login(patientResult));
     }
 
-    @Test
-    void remove() {
-        Result r = patientcontroller.remove(3);
-        System.out.println(r.getSuccess());
-    }
+
 }

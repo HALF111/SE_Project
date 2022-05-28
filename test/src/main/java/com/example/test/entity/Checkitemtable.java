@@ -3,7 +3,7 @@ package com.example.test.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -12,8 +12,7 @@ public class Checkitemtable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String checkitemname;
-    private Integer itemprice;
+    private Float itemprice;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "checkitemid")
-    @JoinColumn(name = "checkitemid")
-    private List<Itemrecord> itemrecords;
+    private Set<Itemrecord> itemrecords;
 }

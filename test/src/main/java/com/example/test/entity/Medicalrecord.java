@@ -6,7 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -32,12 +32,17 @@ public class Medicalrecord {
     private Boolean ispaid = false;
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date paymenttime;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "recordid")
-    private List<Itemrecord> itemrecords;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "recordid")
-    private List<Medicationrecord> medicationrecords;
-    @OneToOne(mappedBy = "recordid")
-    private Hospitalizationrecord hospitalizationrecord;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recordid")
+    private Set<Itemrecord> itemrecords;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recordid")
+    private Set<Medicationrecord> medicationrecords;
+    @ManyToOne
+    @JoinColumn(name = "sickroomid")
+    private Sickroominfo sickroomid;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
+    private Date arrivaltime;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
+    private Date departuretime;
 
 
 }

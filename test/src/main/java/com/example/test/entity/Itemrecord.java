@@ -16,6 +16,6 @@ public class Itemrecord {
     @ManyToOne
     @JoinColumn(name = "checkitemid")
     private Checkitemtable checkitemid;
-    private Integer itemprice;
+    private Float itemprice;
 
 }
