@@ -40,8 +40,35 @@ public class Sickroominfocontroller {
         return result;
     }
 
+    @PostMapping("/update")
+    public Result update(Result<Sickroominfo> sickroominfo) {
+        Sickroominfo sickroominfo1 = sickroominforepository.findById(sickroominfo.getResult().getId()).orElse(null);
+        Result result = new Result<>();
+        result.setSuccess(0);
+        if (sickroominfo1 == null) {
+            result.setSrc("error,sickroomid not exist");
+            return result;
+        }
+        sickroominfo1 = sickroominforepository.findByRoomnumber(sickroominfo.getResult().getRoomnumber());
+        if (!sickroominfo1.equals(sickroominfo.getResult())) {
+            result.setSrc("error,sickroomnumber not exist");
+            return result;
+        }
+        sickroominfo1 = sickroominforepository.save(sickroominfo.getResult());
+        if (!sickroominfo1.equals(sickroominfo.getResult())) {
+            result.setSrc("error,save error");
+            return result;
+        }
+        result.setSuccess(1);
+        return result;
+    }
+
     @GetMapping("/empty")
     public List<Sickroominfo> findempty() {
         return sickroominforepository.findByHaspatient(false);
+    }
+
+    public Sickroominfo findbyid(Integer id) {
+        return sickroominforepository.findById(id).orElse(null);
     }
 }

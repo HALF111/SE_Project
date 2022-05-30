@@ -27,8 +27,8 @@ public class Medicalrecord {
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date diagnosistime;
     private String diagnosiscontent;
-    private Boolean needhospitalization;
-    private Integer totalprice;
+    private Boolean needhospitalization = false;
+    private Float totalprice;
     private Boolean ispaid = false;
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:MM:SS")
     private Date paymenttime;

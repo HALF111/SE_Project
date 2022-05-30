@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/doctoruser")
 public class Doctorcontroller {
@@ -114,6 +117,33 @@ public class Doctorcontroller {
             result.setSuccess(1);
             result.setResult(p);
         }
+        return result;
+    }
+
+    @PostMapping("/worklist")
+    public Result<List<Medicalrecord>> worklist(Integer id) {
+        Doctor doctor = doctorrepository.findById(id).orElse(null);
+        Result<List<Medicalrecord>> result = new Result<>();
+        if (doctor == null) {
+            result.setSuccess(0);
+            result.setSrc("doctor not exist");
+            return result;
+        }
+        List<Medicalrecord> medicalrecords = null;
+        try {
+            medicalrecords = new ArrayList<>(doctor.getMedicalrecords());
+        } catch (NullPointerException e) {
+            result.setSuccess(0);
+            result.setSrc("empty");
+            return result;
+        }
+
+        if (medicalrecords.size() == 0) {
+            result.setSuccess(0);
+            result.setSrc("empty");
+            return result;
+        }
+        result.setResult(medicalrecords);
         return result;
     }
 }

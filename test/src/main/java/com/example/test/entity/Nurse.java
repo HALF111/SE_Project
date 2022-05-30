@@ -2,6 +2,7 @@ package com.example.test.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@DynamicUpdate
 public class Nurse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

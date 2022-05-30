@@ -1,12 +1,14 @@
 package com.example.test.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Data
+@DynamicUpdate
 public class Sickroominfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

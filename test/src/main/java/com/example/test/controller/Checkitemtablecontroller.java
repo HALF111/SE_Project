@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/checkitemtable")
 public class Checkitemtablecontroller {
@@ -50,6 +52,15 @@ public class Checkitemtablecontroller {
         }
         result.setSuccess(1);
         return result;
+    }
+
+    @PostMapping("/findallcheck")
+    public List<Checkitemtable> findallcheck() {
+        return checkitemtablerepository.findByIdGreaterThan(0);
+    }
+
+    public Checkitemtable findbyid(Integer id) {
+        return checkitemtablerepository.findById(id).orElse(null);
     }
 
 }

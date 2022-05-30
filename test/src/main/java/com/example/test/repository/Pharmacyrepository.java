@@ -9,4 +9,6 @@ public interface Pharmacyrepository extends JpaRepository<Pharmacy, Integer> {
     public Pharmacy findByMedicinename(String medicinename);
 
     public List<Pharmacy> findByInventory(Integer in);
+
+    public List<Pharmacy> findByInventoryGreaterThan(Integer i);
 }

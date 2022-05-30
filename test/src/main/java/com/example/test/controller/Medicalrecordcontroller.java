@@ -26,18 +26,43 @@ public class Medicalrecordcontroller {
     private Itemrecordrepository itemrecordrepository;
 
     @PostMapping("/insertrecord")
-    public String insertrecord(@RequestBody Medicalrecord medical_record) {
+    public Result insertrecord(@RequestBody Medicalrecord medical_record) {
         Medicalrecord search = medicalrecordrepository.findByPatientidAndRegistrationtime(medical_record.getPatientid(), medical_record.getRegistrationtime());
+        Result result1 = new Result<>();
+        result1.setSuccess(0);
         if (search != null) {
-            return "error,record exist";
+            result1.setSrc("error,record exist");
+            return result1;
         }
         Medicalrecord result = medicalrecordrepository.save(medical_record);//存入
         if (result.equals(medical_record)) {
-            return "success";
+            result1.setSuccess(1);
+            return result1;
         } else {
-            return "error,save error";
+            result1.setSrc("error,save error");
+            return result1;
         }
     }
+
+    @PostMapping("/update")
+    public Result update(@RequestBody Medicalrecord medical_record) {
+        Medicalrecord search = medicalrecordrepository.findByPatientidAndRegistrationtime(medical_record.getPatientid(), medical_record.getRegistrationtime());
+        Result result1 = new Result<>();
+        result1.setSuccess(0);
+        if (search == null) {
+            result1.setSrc("error,record not exist");
+            return result1;
+        }
+        Medicalrecord result = medicalrecordrepository.save(medical_record);//存入
+        if (result.equals(medical_record)) {
+            result1.setSuccess(1);
+            return result1;
+        } else {
+            result1.setSrc("error,save error");
+            return result1;
+        }
+    }
+
 
     @GetMapping("/searchrecord")
     public List<Medicalrecord> searchrecord(Integer i) {
@@ -83,6 +108,16 @@ public class Medicalrecordcontroller {
         i = medicalrecordrepository.removeById(id);
         r.setSuccess(i);
         return r;
+    }
+
+    public Medicalrecord findbyid(int id) {
+        return medicalrecordrepository.findById(id).orElse(null);
+    }
+
+    @GetMapping("/price")
+    public Float price(Integer id) {
+        Medicalrecord medicalrecord = medicalrecordrepository.findById(id).orElse(null);
+        return medicalrecord.getTotalprice();
     }
 
 }
